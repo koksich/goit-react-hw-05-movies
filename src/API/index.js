@@ -37,7 +37,7 @@ export const fetchMovieReviews = async id => {
         language: 'en-US',
         page: 1,
     })
-    const response = await axios.get(`/mpvie/&{id}/reviews?${searchParams}`);
+    const response = await axios.get(`/movie/${id}/reviews?${searchParams}`);
     return response.data.results;
 
 }
