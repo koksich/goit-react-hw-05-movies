@@ -4,6 +4,7 @@ import { useLocation, useNavigate, useParams } from 'react-router';
 import { fetchMovieData } from 'API';
 import MovieData from 'components/MovieData/MovieData';
 import HandleError from 'components/HandleError/HandleError';
+import { Btn } from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const [movieData, setMovieData] = useState();
@@ -36,9 +37,9 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <button type="button" onClick={backToMovies}>
+      <Btn type="button" onClick={backToMovies}>
         Back to movies
-      </button>
+      </Btn>
           {movieData && <MovieData data={movieData} />}
           {error && <HandleError title="Something went wrong"/>}
     </div>

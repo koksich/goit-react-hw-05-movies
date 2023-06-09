@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 
+import PropTypes from 'prop-types';
+
+import { Form, Input, Btn } from './Search.styled';
+
+
 const Search = ({ onSubmit }) => {
   const [value, setValue] = useState('');
 
@@ -21,8 +26,8 @@ const Search = ({ onSubmit }) => {
     };
     
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <Form onSubmit={handleSubmit}>
+      <Input
         type="search"
         name="search"
         autoComplete="off"
@@ -30,12 +35,15 @@ const Search = ({ onSubmit }) => {
         value={value}
         onChange={handleChange}
       />
-      <button type="submit" aria-label="Search">
-        {' '}
-        Seacrh {<FiSearch />}
-      </button>
-    </form>
+      <Btn type="submit" aria-label="Search">
+         {<FiSearch />}
+      </Btn>
+    </Form>
   );
+};
+
+Search.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default Search;

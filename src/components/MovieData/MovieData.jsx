@@ -1,5 +1,8 @@
 import { Suspense } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { BtnLink, BtnList, Img, InfoBlock, Text, Wrapper } from './MovieData.styled';
+
 
 const API_URL_IMG = `https://image.tmdb.org/t/p/original`;
 
@@ -16,8 +19,8 @@ const MovieData = ({ data }) => {
 
   return (
     <div>
-      <div>
-        <img src={API_URL_IMG + poster_path} alt={title ?? name} />
+      <Wrapper>
+        <Img src={API_URL_IMG + poster_path} alt={title ?? name} />
         <div>
           <h1>{title && name}</h1>
           <p>Average score: {Math.round(vote_average * 10)}%</p>
@@ -26,21 +29,36 @@ const MovieData = ({ data }) => {
           <h3>Genres: </h3>
           <p>{getGenres(genres)}</p>
         </div>
-      </div>
+      </Wrapper>
 
-      <div>
-        <h4>Additional information</h4>
-        <ul>
-          <NavLink to="cast">Cast</NavLink>
-          <NavLink to="reviews">Reviews</NavLink>
-        </ul>
-      </div>
+      <InfoBlock>
+        <Text>Additional information</Text>
+        <BtnList>
+          <BtnLink to="cast">Cast</BtnLink>
+          <BtnLink to="reviews">Reviews</BtnLink>
+        </BtnList>
+      </InfoBlock>
 
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
     </div>
   );
+};
+
+MovieData.propTypes = {
+  data: PropTypes.shape({
+    poster_path: PropTypes.string,
+    title: PropTypes.string,
+    name: PropTypes.string,
+    vote_average: PropTypes.number,
+    overview: PropTypes.string,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+      })
+    ),
+  }),
 };
 
 export default MovieData;

@@ -1,9 +1,17 @@
+import PropTypes from 'prop-types';
+
+import { Btn } from './LoadMoreBtn.styled';
+
 const LoadMoreBtn = ({ onClick }) => {
   return (
-    <button type="button" onClick={onClick} aria-label="Load More">
+    <Btn type="button" onClick={onClick} aria-label="Load More">
       Load More...
-    </button>
+    </Btn>
   );
+};
+
+LoadMoreBtn.propTypes = {
+  onClick: PropTypes.func.isRequired,
 };
 
 export default LoadMoreBtn;

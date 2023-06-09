@@ -58,7 +58,7 @@ const Movies = () => {
           {pages < totalPages && <LoadMoreBtn onClick={()=> setPages(prevPage => prevPage + 1)} />}
         </Section>
           )}
-          {error && <HandleError title="Something went wrong :(. PLease, tray again."/>}
+          {error && <HandleError title="Something went wrong :(. Please, tray again."/>}
     </>
   );
 };

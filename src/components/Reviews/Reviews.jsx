@@ -2,6 +2,7 @@ import { fetchMovieReviews } from "API";
 import HandleError from "components/HandleError/HandleError";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Item, List, Wrapper, Author, Text } from "./Reviews.styled";
 
 const Reviews = () => {
     const { movieId } = useParams();
@@ -25,16 +26,16 @@ const Reviews = () => {
         fetchReviews();
     }, [movieId])
 
-    return (<div>
-        {reviews.length > 0 && (<ul>
+    return (<Wrapper>
+        {reviews.length > 0 && (<List>
             {reviews.map(({ id, author, content }) => {
-                return (<li key={id}>
-                    <h4>Author: {author}</h4>
-                    <p>{ content}</p>
-            </li>)})}
-        </ul>)}
+                return (<Item key={id}>
+                    <Author>Author: {author}</Author>
+                    <Text>{ content}</Text>
+            </Item>)})}
+        </List>)}
         {error && <HandleError title="Sorry, there are no reviews for this movie"/>}
-    </div>)
+    </Wrapper>)
 }
 
 export default Reviews;

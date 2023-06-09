@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { fetchMovieCast } from 'API';
 import HandleError from 'components/HandleError/HandleError';
+import { List, Img, Character, Name } from './Cast.styled';
 
 const API_URL_IMG = `https://image.tmdb.org/t/p/w300/`;
 
@@ -31,17 +32,17 @@ const Cast = () => {
   return (
     <div>
       {actors.length > 0 && (
-        <ul>
+        <List>
           {actors.map(({ id, profile_path, name, character }) => {
             return (
               <li key={id}>
-                <img src={API_URL_IMG + profile_path} alt={name} />
-                <h4>{name}</h4>
-                <p>{character}</p>
+                <Img src={API_URL_IMG + profile_path} alt={name} />
+                <Name>{name}</Name>
+                <Character>{character}</Character>
               </li>
             );
           })}
-        </ul>
+        </List>
       )}
       {error && <HandleError title="Sorry, there is no cast information" />}
     </div>
